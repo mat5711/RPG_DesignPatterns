@@ -1,4 +1,4 @@
-package eu.telecomnancy.rpg;
+package test.java.eu.telecomnancy.rpg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
