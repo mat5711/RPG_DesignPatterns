@@ -7,7 +7,7 @@ public class Warrior extends GameCharacter {
 
     public Warrior(String name) {
         super(name);
-        strength = getLevel() * 10+new Random().nextInt(10);
+        this.strength = getLevel() * 10+new Random().nextInt(10);
     }
 
     public int getStrength() {
@@ -25,4 +25,10 @@ public class Warrior extends GameCharacter {
         return (Warrior) super.clone();
     }
     
+
+    //Pour le visitor
+    @Override
+    public void accept(CharacterVisitor visitor) {
+        visitor.visit(this);
+    }
 }

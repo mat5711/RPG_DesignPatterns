@@ -17,6 +17,9 @@ public abstract class GameCharacter implements Cloneable{
     }
 
 
+    //Pour le visitor
+    public abstract void accept(CharacterVisitor visitor);
+
     //pour le clonage
     @Override
     public GameCharacter clone() {
@@ -59,4 +62,5 @@ public abstract class GameCharacter implements Cloneable{
         return name + " (Level " + level + ") with " + health + " HP and " + experiencePoints + " XP";
     }
     
+
 }

@@ -9,11 +9,11 @@ public class Wizard extends GameCharacter {
 
     public Wizard(String name) {
         super(name);
-        intelligence = getLevel() * 10+new Random().nextInt(10);
+        this.intelligence = getLevel() * 10+new Random().nextInt(10);
     }
 
     public int getIntelligence() {
-        return intelligence;
+        return this.intelligence;
     }
 
     public void setIntelligence(int intelligence) {
@@ -27,4 +27,10 @@ public class Wizard extends GameCharacter {
         return (Wizard) super.clone();
     }
 
+
+    //pour le visitor
+    @Override
+    public void accept(CharacterVisitor visitor) {
+        visitor.visit(this);
+    }
 }

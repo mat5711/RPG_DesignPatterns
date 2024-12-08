@@ -24,4 +24,10 @@ public class Healer extends GameCharacter{
         return (Healer) super.clone();
     }
 
+
+    //pour le visitor
+    @Override
+    public void accept(CharacterVisitor visitor) {
+        visitor.visit(this);
+    }
 }
