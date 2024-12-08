@@ -21,4 +21,10 @@ public class Wizard extends GameCharacter {
     }
     
     
+    //Pour le clonage :
+    @Override
+    public Wizard clone() {
+        return (Wizard) super.clone();
+    }
+
 }

@@ -2,10 +2,11 @@ package eu.telecomnancy.rpg;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 
-
-public class Team {
+//Cloneable est une interface qui existe déjà en java pour utiliser le pattern Prototype
+public class Team implements Cloneable{
 
     private final String name;
 
@@ -65,4 +66,22 @@ public class Team {
     public int size() {
         return players.size();
     }
+
+
+    //Le clonage en question
+    @Override
+    public Team clone(){
+        try {
+            Team clonedTeam = (Team) super.clone();
+            clonedTeam.players = new ArrayList<>();
+            for (GameCharacter player : this.players) {
+                clonedTeam.players.add(player.clone());
+            }
+            return clonedTeam;
+        } catch (CloneNotSupportedException e){
+            throw new AssertionError();
+        }
+    }
+
+
 }

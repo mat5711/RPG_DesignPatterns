@@ -2,7 +2,7 @@ package main.java.eu.telecomnancy.rpg;
 
 
 
-public abstract class GameCharacter {
+public abstract class GameCharacter implements Cloneable{
 
     private final String name;
     private int health;
@@ -16,6 +16,16 @@ public abstract class GameCharacter {
         this.level = 1;
     }
 
+
+    //pour le clonage
+    @Override
+    public GameCharacter clone() {
+        try {
+            return (GameCharacter) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
     
     public String getName() {
         return name;

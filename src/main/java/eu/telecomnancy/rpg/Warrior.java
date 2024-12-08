@@ -18,5 +18,11 @@ public class Warrior extends GameCharacter {
         this.strength = strength;
     }
     
+
+    //Pour le clonage :
+    @Override
+    public Warrior clone() {
+        return (Warrior) super.clone();
+    }
     
 }

@@ -17,4 +17,11 @@ public class Healer extends GameCharacter{
     public void setIntelligence(int intelligence){
         this.intelligence = intelligence;
     }
+
+    //Pour le clonage :
+    @Override
+    public Healer clone() {
+        return (Healer) super.clone();
+    }
+
 }
