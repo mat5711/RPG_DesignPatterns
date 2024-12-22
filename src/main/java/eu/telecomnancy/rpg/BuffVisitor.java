@@ -1,4 +1,4 @@
-package eu.telecomnancy.rpg;
+package main.java.eu.telecomnancy.rpg;
 
 import java.util.Collection;
 import main.java.eu.telecomnancy.rpg.GameCharacter;

@@ -1,4 +1,4 @@
-package main.java.eu.telecomnancy.rpg;
+package eu.telecomnancy.rpg;
 
 
 
@@ -8,12 +8,14 @@ public abstract class GameCharacter implements Cloneable{
     private int health;
     private int experiencePoints;
     private int level;
+    private CombatStrategy combatStrategy;
 
 
     public GameCharacter(String name) {
         this.name = name;
         this.experiencePoints = 0;
         this.level = 1;
+        this.combatStrategy = new NeutralStrategy(); // on met le personnage en stratégie neutre par défaut
     }
 
 
@@ -35,7 +37,7 @@ public abstract class GameCharacter implements Cloneable{
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public void setHealth(int health) {
@@ -43,7 +45,7 @@ public abstract class GameCharacter implements Cloneable{
     }
 
     public int getExperiencePoints() {
-        return experiencePoints;
+        return this.experiencePoints;
     }
 
     public void setExperiencePoints(int experiencePoints) {
@@ -51,7 +53,7 @@ public abstract class GameCharacter implements Cloneable{
     }
 
     public int getLevel() {
-        return level;
+        return this.level;
     }
 
     public void setLevel(int level) {
@@ -62,5 +64,29 @@ public abstract class GameCharacter implements Cloneable{
         return name + " (Level " + level + ") with " + health + " HP and " + experiencePoints + " XP";
     }
     
+    public CombatStrategy getStrategy(){
+        return this.combatStrategy;
+    }
+
+    public void setStrategy(CombatStrategy combatStrategy){
+        this.combatStrategy = combatStrategy;
+    }
+
+
+    //attaque un autre personnage
+    public void attack(GameCharacter ennemyCharacter) {
+        int damage = 5; // les dégâts par défaut d'une attaque sont de 5
+        int realDamage = this.combatStrategy.degatsInfliges(damage);
+        ennemyCharacter.receiveAttack(realDamage);
+    }
+
+    //subir une attaque
+    public void receiveAttack(int damage) {
+        this.setHealth(this.getHealth() - this.combatStrategy.degatsEncaisses(damage));
+        if (this.getHealth() < 0) {
+            this.setHealth(0);
+        }
+    }
+
 
 }
