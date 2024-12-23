@@ -1,4 +1,4 @@
-package main.java.eu.telecomnancy.rpg;
+package eu.telecomnancy.rpg;
 
 import java.util.ArrayList;
 import java.util.Collection;

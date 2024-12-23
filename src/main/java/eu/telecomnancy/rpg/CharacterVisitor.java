@@ -1,6 +1,5 @@
-package main.java.eu.telecomnancy.rpg;
+package eu.telecomnancy.rpg;
 
-import main.java.eu.telecomnancy.rpg.Healer;
 
 public interface CharacterVisitor {
     void visit(Warrior warrior);

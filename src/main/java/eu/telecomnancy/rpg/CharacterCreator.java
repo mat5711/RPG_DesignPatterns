@@ -1,4 +1,4 @@
-package main.java.eu.telecomnancy.rpg;
+package eu.telecomnancy.rpg;
 
 public interface CharacterCreator {
     GameCharacter createCharacter(String name);

@@ -1,4 +1,4 @@
-package main.java.eu.telecomnancy.rpg;
+package eu.telecomnancy.rpg;
 
 public class WarriorCreator implements CharacterCreator{
     
