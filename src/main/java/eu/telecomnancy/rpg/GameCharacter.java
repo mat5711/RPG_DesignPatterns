@@ -1,6 +1,6 @@
 package eu.telecomnancy.rpg;
 
-
+import java.util.List;
 
 public abstract class GameCharacter implements Cloneable{
 
@@ -9,13 +9,18 @@ public abstract class GameCharacter implements Cloneable{
     private int experiencePoints;
     private int level;
     private CombatStrategy combatStrategy;
+    private List<Observer> observers;
 
+    //on définit un sueil et si experiencePoints est au dessus de ce sueil, on monte de niveau, et le seuil devient plus élevé
+    private int xpRequiredForNextLevel;
 
     public GameCharacter(String name) {
         this.name = name;
         this.experiencePoints = 0;
         this.level = 1;
         this.combatStrategy = new NeutralStrategy(); // on met le personnage en stratégie neutre par défaut
+        this.xpRequiredForNextLevel = 10;
+
     }
 
 
@@ -83,10 +88,48 @@ public abstract class GameCharacter implements Cloneable{
     //subir une attaque
     public void receiveAttack(int damage) {
         this.setHealth(this.getHealth() - this.combatStrategy.degatsEncaisses(damage));
-        if (this.getHealth() < 0) {
-            this.setHealth(0);
+        checkDeath();
+    }
+
+
+    //Partie Observer :
+    public void checkLevelUp() {
+        if (this.experiencePoints >= this.xpRequiredForNextLevel) {
+            this.level++;
+            this.experiencePoints = 0;
+            this.xpRequiredForNextLevel *= 2; // il faudra 2 fois plus d'xp pour monter au niveau suivant
+            notifyChangementLevel();
         }
     }
 
+    public void notifyChangementLevel() {
+        //Seul les observers qui s'occupent du level up sont notifiés, car pour les autres obersvers, la méthode ne fait rien
+        for (Observer observer : observers) {
+            observer.levelUp(this);
+        }
+    }
+
+    public void checkDeath() {
+        if (this.health <= 0) {
+            notifyDeath();
+        }
+    }
+
+    public void notifyDeath() {
+        //Pareil : seul les observers qui s'occupent de la mort sont notifiés, car pour les autres obersvers, la méthode ne fait rien
+        for (Observer observer : observers) {
+            observer.death(this);
+        }
+    }
+
+    //permet à un observer de s'abonner à CE personnage (attention : si un observer veut s'abonner à plusieurs personnages, il doit appeler cette méthode à partir de chaque personnage)
+    public void addObserver(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    //permet à un observer de se désabonner de CE personnage
+    public void removeObserver(Observer observer) {
+        this.observers.remove(observer);
+    }
 
 }
