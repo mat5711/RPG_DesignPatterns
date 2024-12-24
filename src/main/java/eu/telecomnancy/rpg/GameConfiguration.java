@@ -5,6 +5,7 @@ public class GameConfiguration {
     int difficulty;
     int sizeMax;
 
+    //pattern singleton, d'où le constructeur privé
     private GameConfiguration() {
         this.difficulty = 1;
         this.sizeMax = 10;
@@ -28,4 +29,12 @@ public class GameConfiguration {
         return this.sizeMax;
     }
 
+    //On construit les setter :
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setSizeMax(int sizeMax) {
+        this.sizeMax = sizeMax;
+    }
 }

@@ -4,15 +4,15 @@ import java.util.List;
 
 public abstract class GameCharacter implements Cloneable{
 
-    private final String name;
-    private int health;
-    private int experiencePoints;
-    private int level;
-    private CombatStrategy combatStrategy;
-    private List<Observer> observers;
+    protected final String name;
+    protected int health;
+    protected int experiencePoints;
+    protected int level;
+    protected CombatStrategy combatStrategy;
+    protected List<Observer> observers;
 
     //on définit un sueil et si experiencePoints est au dessus de ce sueil, on monte de niveau, et le seuil devient plus élevé
-    private int xpRequiredForNextLevel;
+    protected int xpRequiredForNextLevel;
 
     public GameCharacter(String name) {
         this.name = name;
