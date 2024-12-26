@@ -1,7 +1,7 @@
 package eu.telecomnancy.rpg;
 
 public class Decorator extends GameCharacter{
-    private GameCharacter decoratedCharacter;
+    protected GameCharacter decoratedCharacter;
 
     public Decorator(GameCharacter decoratedCharacter) {
         //on appelle le constructeur de la classe mère
@@ -14,6 +14,11 @@ public class Decorator extends GameCharacter{
         return decoratedCharacter.getName();
     }
 
+
+    @Override
+    public void accept(CharacterVisitor visitor) {
+        decoratedCharacter.accept(visitor);
+    }
 
     
 }
