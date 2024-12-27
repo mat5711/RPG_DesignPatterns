@@ -1,5 +1,6 @@
 package eu.telecomnancy.rpg;
 
+
 public class AddTeamCommand implements Command {
     private Facade facade; // à faire
     private Team team;
@@ -20,7 +21,9 @@ public class AddTeamCommand implements Command {
 
     @Override
     public void undo() {
-        facade.removeTeam(team);
-        executed = false;
+        if (executed) {
+            facade.removeTeam(team.getName());
+            executed = false;
+        }
     }
 }

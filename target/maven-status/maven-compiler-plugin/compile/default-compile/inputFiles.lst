@@ -1,10 +1,17 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Main.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/GameController.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/RemoveTeamCommand.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CombatStrategy.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CharacterCreator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Builder.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/GameInvoker.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/GameConfiguration.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Client.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Facade.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Command.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/InvicibleDecorator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CharacterVisitor.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/AddTeamCommand.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Observer.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/WarriorCreator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Decorator.java

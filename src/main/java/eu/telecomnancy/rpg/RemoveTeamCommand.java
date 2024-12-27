@@ -1,26 +1,31 @@
 package eu.telecomnancy.rpg;
 
 public class RemoveTeamCommand implements Command {
-    private Facade facade; // à faire
-    private Team team;
+    
+    private Facade facade; 
+    private Team removedTeam;
     private boolean executed;
-    private String name;
+    private String teamName;
 
-    public RemoveTeamCommand(Facade facade, String name) {
+    public RemoveTeamCommand(Facade facade, String teamName) {
         this.facade = facade;
-        this.name = name;
+        this.teamName = teamName;
         this.executed = false;
     }
 
     @Override
     public void execute() {
-        facade.removeCharacter(team);
+        removedTeam = facade.getTeams().get(teamName);
+        facade.removeTeam(teamName);
         executed = true;
     }
 
     @Override
     public void undo() {
-        facade.addCharacter(team);
-        executed = false;
+        if (executed && removedTeam != null){
+            facade.addTeam(removedTeam);
+            executed = false;
+        }
     }    
+
 }
