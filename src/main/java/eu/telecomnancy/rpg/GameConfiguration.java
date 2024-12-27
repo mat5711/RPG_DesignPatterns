@@ -7,11 +7,12 @@ public class GameConfiguration {
 
     //pattern singleton, d'où le constructeur privé
     private GameConfiguration() {
-        this.difficulty = 1;
-        this.sizeMax = 10;
+        this.difficulty = 1; // difficulté par défaut : 1
+        this.sizeMax = 5; // taille max d'une équipe par défaut : 5
     }
 
 
+    //Utile pour le pattern singleton
     public static GameConfiguration getInstance() {
         if (instance == null) { //Attention : ne pas mettre ici this.instance car le instance est static donc on peut y accéder de n'importe où, donc il ne faut pas mettre this ici
             instance = new GameConfiguration();
@@ -30,6 +31,7 @@ public class GameConfiguration {
     }
 
     //On construit les setter :
+    //Si on souhaite changer les valeurs par défaut
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }

@@ -18,6 +18,7 @@ public abstract class GameCharacter implements Cloneable{
         this.name = name;
         this.experiencePoints = 0;
         this.level = 1;
+        this.health = 30;
         this.combatStrategy = new NeutralStrategy(); // on met le personnage en stratégie neutre par défaut
         this.xpRequiredForNextLevel = 10;
 

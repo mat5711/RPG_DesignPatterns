@@ -12,7 +12,7 @@ public class InvicibleDecoratorTest {
         InvicibleDecorator decorator = new InvicibleDecorator(character);
         
         // Act
-        decorator.receiveAttack(10);
+        decorator.receiveAttack(1000);
         
         // Assert
         assertEquals(1, decorator.getHealth());
