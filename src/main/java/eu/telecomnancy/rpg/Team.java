@@ -10,7 +10,7 @@ public class Team implements Cloneable{
 
     private final String name;
 
-    private Collection<GameCharacter> players;
+    private List<GameCharacter> players;
 
     public Team(String name) {
         this.name = name;
@@ -21,9 +21,10 @@ public class Team implements Cloneable{
         return name;
     }
     
-    public Collection<GameCharacter> getPlayers() {
+    public List<GameCharacter> getPlayers() {
         return players;
     }
+
     public void addPlayer(GameCharacter player) {
         players.add(player);
     }

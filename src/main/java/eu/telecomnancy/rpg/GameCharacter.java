@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class GameCharacter implements Cloneable{
 
-    protected final String name;
+    protected final String name; // le nom du personnage est final (constant), il ne peut pas être modifié
     protected int health;
     protected int experiencePoints;
     protected int level;
@@ -38,6 +38,8 @@ public abstract class GameCharacter implements Cloneable{
         }
     }
     
+    //Pas de setName puisque le nom est final
+
     public String getName() {
         return name;
     }
