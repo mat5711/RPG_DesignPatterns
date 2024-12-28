@@ -9,7 +9,7 @@ public class Wizard extends GameCharacter {
 
     public Wizard(String name) {
         super(name);
-        this.intelligence = getLevel() * 10+new Random().nextInt(10);
+        this.intelligence = getLevel() * 10; // l'intelligence du personnage est par rapport à son niveau
     }
 
     public int getIntelligence() {

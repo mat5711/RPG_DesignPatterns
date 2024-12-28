@@ -7,7 +7,7 @@ public class Warrior extends GameCharacter {
 
     public Warrior(String name) {
         super(name);
-        this.strength = getLevel() * 10;
+        this.strength = getLevel() * 10; // la force du personnage est par rapport à son niveau
     }
 
     public int getStrength() {

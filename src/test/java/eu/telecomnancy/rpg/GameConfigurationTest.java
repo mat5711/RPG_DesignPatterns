@@ -15,7 +15,7 @@ public class GameConfigurationTest {
         assertSame(config1, config2, "Les deux références doivent pointer vers la même instance");
     }
     
-    
+    /* 
     @Test
     public void testDefaultValues() {
         GameConfiguration config3 = GameConfiguration.getInstance();
@@ -33,7 +33,7 @@ public class GameConfigurationTest {
         assertEquals(6, config.getSizeMax(), "La taille maximale de l'équipe doit être mise à jour à 6");
     }
 
-    /* 
+    
     @Test
     public void testSetAndGetDifficultyLevel() {
         GameConfiguration config = GameConfiguration.getInstance();

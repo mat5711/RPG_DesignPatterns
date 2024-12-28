@@ -1,21 +1,20 @@
 package eu.telecomnancy.rpg;
 
-import java.util.Random;
 
 public class Healer extends GameCharacter{
-    private int intelligence;
+    private int wisdom;
 
     public Healer(String name){
-        super(name); //On appelle le constructeur de la classe mère pour déjà créé un GameCharacter, et ensuite on donne les détails pour notre Healer
-        this.intelligence = getIntelligence() * 10+new Random().nextInt(10); //on lui donne une intelligence random et on pourra la modifier avec setIntelligence
+        super(name); //On appelle le constructeur de la classe mère pour avoir les caractéristiques du GameCharacter, et ensuite on donne les détails pour notre Healer
+        this.wisdom = getLevel() * 10; // la sagesse du personnage est par rapport à son niveau
     }
 
-    public int getIntelligence(){
-        return this.intelligence;
+    public int getWisdom(){
+        return this.wisdom;
     }
 
-    public void setIntelligence(int intelligence){
-        this.intelligence = intelligence;
+    public void setWisdom(int wisdom){
+        this.wisdom = wisdom;
     }
 
     //Pour le clonage :
