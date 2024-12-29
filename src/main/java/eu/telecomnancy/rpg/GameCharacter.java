@@ -137,11 +137,12 @@ public abstract class GameCharacter implements Cloneable{
         state.onEnterState(this); // on avertit le personnage qu'il est dans un nouvel état
     }
 
-
+    //permet de changer de State du personnage en fonction de la situation
     public void update(){
         this.state.onUpdate(this);
     }
 
+    //permet de tenter de bouger le personnage
     public void tryToMove(){
         this.state.onTryToMove(this);
     }
