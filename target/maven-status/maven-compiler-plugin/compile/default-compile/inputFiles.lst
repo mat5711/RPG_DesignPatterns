@@ -4,11 +4,13 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CombatStrategy.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CharacterCreator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Builder.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/DeadState.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/GameInvoker.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/GameConfiguration.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Client.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/DamageVisitor.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Facade.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/ScaredState.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Command.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/InvicibleDecorator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/CharacterVisitor.java
@@ -18,6 +20,8 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Decorator.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Team.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/LevelUpObserver.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/NormalState.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/State.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Warrior.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/NeutralStrategy.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/AggressiveStrategy.java
@@ -27,6 +31,7 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/TeamBuilder.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Wizard.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/DeathObserver.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/WoundedState.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/DefensiveStrategy.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/BuffVisitor.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/main/java/eu/telecomnancy/rpg/Healer.java

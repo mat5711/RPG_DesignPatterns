@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.009" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="eu.telecomnancy.rpg.StateTest" time="0.026" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -54,9 +54,41 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDamageVisitor" classname="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.001"/>
-  <testcase name="testDamageVisitorUnderZero" classname="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.001"/>
-  <testcase name="testConsecutiveVisitors" classname="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.001"/>
-  <testcase name="testHealVisitor" classname="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.001"/>
-  <testcase name="testBuffVisitor" classname="eu.telecomnancy.rpg.CharacterVisitorTest" time="0.001"/>
+  <testcase name="testAttackCausesStateChangeInTarget" classname="eu.telecomnancy.rpg.StateTest" time="0.009">
+    <system-out><![CDATA[Le personnage Conan attaque normalement
+Le personnage Thulsa Doom est effrayé
+]]></system-out>
+  </testcase>
+  <testcase name="testWoundedStateBehavior" classname="eu.telecomnancy.rpg.StateTest" time="0.002">
+    <system-out><![CDATA[Le personnage Conan est blessé
+Le personnage Conan se déplace difficilement,car blessé
+Le personnage Conan attaque difficilement,car blessé
+Le personnage Conan est dans l'état normal
+]]></system-out>
+  </testcase>
+  <testcase name="testStateAndStrategy" classname="eu.telecomnancy.rpg.StateTest" time="0.002">
+    <system-out><![CDATA[Le personnage Conan attaque normalement
+Le personnage Conan attaque normalement
+]]></system-out>
+  </testcase>
+  <testcase name="testAutoChangeState" classname="eu.telecomnancy.rpg.StateTest" time="0.002">
+    <system-out><![CDATA[Le personnage Conan est blessé
+Le personnage Conan attaque difficilement,car blessé
+]]></system-out>
+  </testcase>
+  <testcase name="testDeadStateBehavior" classname="eu.telecomnancy.rpg.StateTest" time="0.002">
+    <system-out><![CDATA[Le personnage Thulsa Doom est mort
+Le personnage Thulsa Doom ne peut pas attaquer, car mort
+Le personnage Thulsa Doomne peut pas se déplacer, car mort
+]]></system-out>
+  </testcase>
+  <testcase name="testNormalToDeadTransitionOnUpdate" classname="eu.telecomnancy.rpg.StateTest" time="0.002">
+    <system-out><![CDATA[Le personnage Conan est mort
+]]></system-out>
+  </testcase>
+  <testcase name="testInitialStateIsNormal" classname="eu.telecomnancy.rpg.StateTest" time="0.001"/>
+  <testcase name="testNormalToWoundedTransitionOnUpdate" classname="eu.telecomnancy.rpg.StateTest" time="0.001">
+    <system-out><![CDATA[Le personnage Conan est blessé
+]]></system-out>
+  </testcase>
 </testsuite>

@@ -10,6 +10,8 @@ public abstract class GameCharacter implements Cloneable{
     protected int level;
     protected CombatStrategy combatStrategy;
     protected List<Observer> observers;
+    protected State state;
+    protected int stateDamage; // Correspond à la valeur des dégâts infligés par un personnage lors d'une attaque, en fonction de son State
 
     //on définit un sueil et si experiencePoints est au dessus de ce sueil, on monte de niveau, et le seuil devient plus élevé
     protected int xpRequiredForNextLevel;
@@ -21,7 +23,7 @@ public abstract class GameCharacter implements Cloneable{
         this.health = 30;
         this.combatStrategy = new NeutralStrategy(); // on met le personnage en stratégie neutre par défaut
         this.xpRequiredForNextLevel = 10;
-
+        this.state = new NormalState(); // Le personnage est dans un état normal par défaut
     }
 
 
@@ -72,6 +74,7 @@ public abstract class GameCharacter implements Cloneable{
         return name + " (Level " + level + ") with " + health + " HP and " + experiencePoints + " XP";
     }
     
+    //Pour Strategy (les méthodes attack et receiveAttack se trouvent tout à la fin, car elles prennent également en compte le State du personnage):
     public CombatStrategy getStrategy(){
         return this.combatStrategy;
     }
@@ -81,21 +84,7 @@ public abstract class GameCharacter implements Cloneable{
     }
 
 
-    //attaque un autre personnage
-    public void attack(GameCharacter ennemyCharacter) {
-        int damage = 5; // les dégâts par défaut d'une attaque sont de 5
-        int realDamage = this.combatStrategy.degatsInfliges(damage);
-        ennemyCharacter.receiveAttack(realDamage);
-    }
-
-    //subir une attaque
-    public void receiveAttack(int damage) {
-        this.setHealth(this.getHealth() - this.combatStrategy.degatsEncaisses(damage));
-        checkDeath();
-    }
-
-
-    //Partie Observer :
+    //Partie Observer
     public void checkLevelUp() {
         if (this.experiencePoints >= this.xpRequiredForNextLevel) {
             this.level++;
@@ -134,5 +123,45 @@ public abstract class GameCharacter implements Cloneable{
     public void removeObserver(Observer observer) {
         this.observers.remove(observer);
     }
+
+
+
+
+    // State
+    public State getState(){
+        return this.state;
+    }
+
+    public void setState(State state){
+        this.state = state;
+        state.onEnterState(this); // on avertit le personnage qu'il est dans un nouvel état
+    }
+
+
+    public void update(){
+        this.state.onUpdate(this);
+    }
+
+    public void tryToMove(){
+        this.state.onTryToMove(this);
+    }
+
+    // Les combats sont gérés par la stratégie de combat du personnage ainsi que son State
+
+    //attaquer un autre personnage
+    public void attack(GameCharacter ennemyCharacter) {
+        // On appelle d'abord onAttack de State pour mettre à jour stateDamage en fonction du State du personnage
+        this.state.onAttack(this, ennemyCharacter);
+        // On définit les dégâts réels infligés en fonciton de la stratégie adoptée pour le personnage
+        int realDamage = this.combatStrategy.degatsInfliges(stateDamage);
+        ennemyCharacter.receiveAttack(realDamage);
+    }
+
+    //Subir une attaque
+    public void receiveAttack(int damage) {
+        this.setHealth(this.getHealth() - this.combatStrategy.degatsEncaisses(damage));
+        checkDeath();
+    }
+    
 
 }
