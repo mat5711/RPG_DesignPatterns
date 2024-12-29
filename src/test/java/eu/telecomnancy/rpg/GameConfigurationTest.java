@@ -1,10 +1,16 @@
 package eu.telecomnancy.rpg;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GameConfigurationTest {
 
+    @BeforeEach
+    public void setUp(){
+        GameConfiguration.resetInstance();
+    }
     
     @Test
     public void testSingletonInstance() {
@@ -15,7 +21,7 @@ public class GameConfigurationTest {
         assertSame(config1, config2, "Les deux références doivent pointer vers la même instance");
     }
     
-    /* 
+    
     @Test
     public void testDefaultValues() {
         GameConfiguration config3 = GameConfiguration.getInstance();
@@ -25,14 +31,14 @@ public class GameConfigurationTest {
     }
     
     
-
+     
     @Test
     public void testSetAndGetMaxTeamSize() {
         GameConfiguration config = GameConfiguration.getInstance();
         config.setSizeMax(6);
         assertEquals(6, config.getSizeMax(), "La taille maximale de l'équipe doit être mise à jour à 6");
     }
-
+    
     
     @Test
     public void testSetAndGetDifficultyLevel() {
@@ -41,6 +47,7 @@ public class GameConfigurationTest {
         assertEquals(2, config.getDifficulty(), "Le niveau de difficulté doit être mis à jour à 2");
     }
 
+    
     @Test
     public void testSingletonConsistency() {
         GameConfiguration config1 = GameConfiguration.getInstance();
@@ -52,5 +59,6 @@ public class GameConfigurationTest {
         config2.setSizeMax(10);
         assertEquals(10, config1.getSizeMax(), "Les changements dans une instance doivent se refléter dans l'autre");
     }
-    */
+    
+    
 }

@@ -20,6 +20,9 @@ public class GameConfiguration {
         return instance;
     }
 
+    public static void resetInstance(){
+        instance = null;
+    }
 
     //On construit les getter :
     public int getDifficulty() {
@@ -32,6 +35,7 @@ public class GameConfiguration {
 
     //On construit les setter :
     //Si on souhaite changer les valeurs par défaut
+
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
