@@ -46,8 +46,8 @@ public class WoundedState implements State {
         State currentState = character.getState();
         if (currentState instanceof WoundedState){
             System.out.println("Le personnage " + character.getName() + " attaque difficilement,car blessé");
-            //Dans cet état, le personnage inflige 2 points de dégâts à la cible
-            character.stateDamage = 2;
+            //On prend la valeur de son attribut principal divisé par 2 pour les dégâts infligés 
+            character.stateDamage = character.getMainAttribut()/2;
         }
         else{
             currentState.onAttack(character, target);

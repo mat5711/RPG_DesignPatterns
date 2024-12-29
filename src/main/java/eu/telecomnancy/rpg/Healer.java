@@ -6,7 +6,8 @@ public class Healer extends GameCharacter{
 
     public Healer(String name){
         super(name); //On appelle le constructeur de la classe mère pour avoir les caractéristiques du GameCharacter, et ensuite on donne les détails pour notre Healer
-        this.wisdom = getLevel() * 10; // la sagesse du personnage est par rapport à son niveau
+        this.wisdom = getLevel() * 3; // la sagesse du personnage est par rapport à son niveau
+        super.health = 50;
     }
 
     public int getWisdom(){
@@ -15,6 +16,14 @@ public class Healer extends GameCharacter{
 
     public void setWisdom(int wisdom){
         this.wisdom = wisdom;
+    }
+
+    public int getMainAttribut(){
+        return this.wisdom;
+    }
+
+    public void attributUpdate(int level){
+        this.wisdom = level * 5;
     }
 
     //Pour le clonage :

@@ -42,8 +42,8 @@ public class NormalState implements State {
         State currentState = character.getState();
         if (currentState instanceof NormalState){
             System.out.println("Le personnage " + character.getName() + " attaque normalement");
-            //Dans cet état, le personnage inflige 5 points de dégâts à la cible
-            character.stateDamage = 5;
+            //On prend la valeur de son attribut principal pour les dégâts infligés 
+            character.stateDamage = character.getMainAttribut();
         }
         else{
             currentState.onAttack(character, target);

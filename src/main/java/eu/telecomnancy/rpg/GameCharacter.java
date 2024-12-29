@@ -20,7 +20,6 @@ public abstract class GameCharacter implements Cloneable{
         this.name = name;
         this.experiencePoints = 0;
         this.level = 1;
-        this.health = 30;
         this.combatStrategy = new NeutralStrategy(); // on met le personnage en stratégie neutre par défaut
         this.xpRequiredForNextLevel = 10;
         this.state = new NormalState(); // Le personnage est dans un état normal par défaut
@@ -68,12 +67,24 @@ public abstract class GameCharacter implements Cloneable{
 
     public void setLevel(int level) {
         this.level = level;
+        // On met à jour l'attribut principal du personnage qui dépend du level
+        this.attributUpdate(level);
+    }
+
+    public void attributUpdate(int level){
+        this.attributUpdate(level);
     }
 
     public String toString() {
         return name + " (Level " + level + ") with " + health + " HP and " + experiencePoints + " XP";
     }
     
+    public int getMainAttribut(){
+        int attribut = this.getMainAttribut();
+        return attribut;
+    }
+
+
     //Pour Strategy (les méthodes attack et receiveAttack se trouvent tout à la fin, car elles prennent également en compte le State du personnage):
     public CombatStrategy getStrategy(){
         return this.combatStrategy;

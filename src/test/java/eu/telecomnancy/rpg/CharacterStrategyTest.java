@@ -25,8 +25,8 @@ public class CharacterStrategyTest {
 
 
         // La stratégie par défaut est neutre, les dégâts infligés et reçus sont inchangés
-        warrior.attack(wizard); // 100-5 = 95
-        assertEquals(95, wizard.getHealth(), "Wizard doit perdre 5 HP avec la stratégie neutre");
+        warrior.attack(wizard); // 100-7 = 93
+        assertEquals(93, wizard.getHealth(), "Wizard doit perdre 7 HP avec la stratégie neutre");
     }
 
     @Test
@@ -37,11 +37,11 @@ public class CharacterStrategyTest {
         warrior.setStrategy(aggressive);
         wizard.setStrategy(aggressive);
 
-        // warior fait 2 fois plus de dégâts, donc 2*5 = 10 de dégâts
-        // wizard subi 2 fois plus de dégâts, donc 2*10 = 20 de dégâts encaissés
+        // warior fait 2 fois plus de dégâts, donc 2*7 = 14 de dégâts
+        // wizard subi 2 fois plus de dégâts, donc 2*14 = 28 de dégâts encaissés
         warrior.attack(wizard);
-        //HP de base = 100, donc dégâts subis : 100-20 = 80
-        assertEquals(80, wizard.getHealth(), "Wizard doit perdre 20 HP lorsque les deux personnages sont en agressif");
+        //HP de base = 100, donc dégâts subis : 100-28 = 72
+        assertEquals(72, wizard.getHealth(), "Wizard doit perdre 28 HP lorsque les deux personnages sont en agressif");
     }
 
     @Test
@@ -62,15 +62,15 @@ public class CharacterStrategyTest {
     public void testChangingStrategiesDynamically() {
         
         // Etape 1 : neutre vs neutre
-        warrior.attack(wizard); // wizard subit 5 de dégâts
-        assertEquals(95, wizard.getHealth());
+        warrior.attack(wizard); // wizard subit 7 de dégâts
+        assertEquals(93, wizard.getHealth());
 
         // Etape 2 : warrior devient agressif
         CombatStrategy aggressive = new AggressiveStrategy();
 
-        warrior.setStrategy(aggressive); // Warrior fait 2 fois plus de dégâts, soit 2*5 = 10
-        warrior.attack(wizard); // wizard HP = 95 - 10 = 85
-        assertEquals(85, wizard.getHealth());
+        warrior.setStrategy(aggressive); // Warrior fait 2 fois plus de dégâts, soit 2*7 = 14
+        warrior.attack(wizard); // wizard HP = 93 - 14 = 79
+        assertEquals(79, wizard.getHealth());
 
         wizard.attack(warrior); // warrior subit 2 fois plus de dégats, HP_initiaux = 100
         assertEquals(90, warrior.getHealth(), "Wizard attaque en neutre donc inflige 5 HP, et Warior est en aggresif, donc subit 2 fois plus de dégâts, donc subi finalement 2*5 = 10 de dégâts");
@@ -79,17 +79,17 @@ public class CharacterStrategyTest {
         CombatStrategy defensive = new DefensiveStrategy();
 
         wizard.setStrategy(defensive); // Wizard reçoit 2 fois moins de dégâts
-        warrior.attack(wizard); // Dégâts infligés = 2*5 = 10 (agressif), mais wizard défensif => subit = 10/2 = 5
+        warrior.attack(wizard); // Dégâts infligés = 2*7 = 14 (agressif), mais wizard défensif => subit = 14/2 = 7
     
-        assertEquals(80, wizard.getHealth());
+        assertEquals(72, wizard.getHealth());
 
         //warrior repasse en neutre
         CombatStrategy neutral = new NeutralStrategy();
         
         warrior.setStrategy(neutral);
-        warrior.attack(wizard); // Dégats infligés = 5 (neutre), wizard défensif => subit = 5/2 = 2
+        warrior.attack(wizard); // Dégats infligés = 7 (neutre), wizard défensif => subit = 7/2 = 3
 
-        assertEquals(78, wizard.getHealth(), "Warrior est en neutre, donc fait 5 de dégâts, et wizard est en défensif, donc subit 5/2 = 2 de dégâts");
+        assertEquals(69, wizard.getHealth(), "Warrior est en neutre, donc fait 7 de dégâts, et wizard est en défensif, donc subit 7/2 = 3 de dégâts");
         
     }
 }

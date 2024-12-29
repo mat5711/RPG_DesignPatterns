@@ -7,7 +7,8 @@ public class Warrior extends GameCharacter {
 
     public Warrior(String name) {
         super(name);
-        this.strength = getLevel() * 10; // la force du personnage est par rapport à son niveau
+        this.strength = getLevel() * 7; // la force du personnage est par rapport à son niveau
+        super.health = 30;
     }
 
     public int getStrength() {
@@ -18,6 +19,13 @@ public class Warrior extends GameCharacter {
         this.strength = strength;
     }
     
+    public int getMainAttribut(){
+        return this.strength;
+    }
+
+    public void attributUpdate(int level){
+        this.strength = level * 5;
+    }
 
     //Pour le clonage :
     @Override
