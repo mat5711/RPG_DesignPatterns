@@ -6,5 +6,6 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterVisitorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/TeamBuilderTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/InvicibleDecoratorTest.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterObserverTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterCreatorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterTest.java
