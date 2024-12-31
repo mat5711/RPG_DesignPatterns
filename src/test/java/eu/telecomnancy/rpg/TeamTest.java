@@ -16,7 +16,7 @@ class TeamTest {
 
     @Test void AddCharacterToTeam() {
         Team team = new Team("test");
-        Wizard character = new Wizard("test");
+        Wizard character = new Wizard("wizard1");
         team.addPlayer(character);
         assertEquals(1, team.size());
     }

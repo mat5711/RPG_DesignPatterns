@@ -67,12 +67,13 @@ public abstract class GameCharacter implements Cloneable{
 
     public void setLevel(int level) {
         this.level = level;
-        // On met à jour l'attribut principal du personnage qui dépend du level
+        // On met à jour l'attribut principal (wisdom, intelligence, strength) qui dépend du level du personnage
         this.attributUpdate(level);
     }
 
     public void attributUpdate(int level){
-        this.attributUpdate(level);
+        this.attributUpdate(level); // Chaque classe fille doit implémenter cette méthode pour mettre à jour son attribut principal
+        // Le this. permet d'appeler la méthode de la classe fille en fonction du type de notre personnage
     }
 
     public String toString() {

@@ -23,7 +23,7 @@ public class Healer extends GameCharacter{
     }
 
     public void attributUpdate(int level){
-        this.wisdom = level * 5;
+        this.wisdom = level * 3;
     }
 
     //Pour le clonage :

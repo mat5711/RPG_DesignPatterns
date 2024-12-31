@@ -24,7 +24,7 @@ public class Warrior extends GameCharacter {
     }
 
     public void attributUpdate(int level){
-        this.strength = level * 5;
+        this.strength = level * 7;
     }
 
     //Pour le clonage :
