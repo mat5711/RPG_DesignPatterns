@@ -3,26 +3,61 @@ package eu.telecomnancy.rpg;
 public class Main {
     public static void main(String[] args) {
 
-        GameConfiguration config = GameConfiguration.getInstance();
+        GameCharacter healer = new Healer("John");
+        GameCharacter healer2 = healer.clone();
+        System.out.println(healer2.getName());
 
-        System.out.println(config.getDifficulty());
-        System.out.println(config.getSizeMax());
+        healer2.setHealth(5);
+        healer2.addExperiencePoints(1000);
 
-        config.setDifficulty(3);
-        config.setSizeMax(6);
 
-        System.out.println(config.getDifficulty());
-        System.out.println(config.getSizeMax());
+        Warrior attaquant = new Warrior("méchant");
 
-        GameConfiguration config2 = GameConfiguration.getInstance();
+        GameCharacter armoredDecorator = new ArmoredDecorator(healer2, 0.4);
+        armoredDecorator = new InvicibleDecorator(armoredDecorator);
 
-        System.out.println(config2.getDifficulty());
-        System.out.println(config2.getSizeMax());
+        healer2.addExperiencePoints(1000);
 
-        config2.setSizeMax(7);
-        config2.setDifficulty(2);
 
-        System.out.println(config.getDifficulty());
-        System.out.println(config.getSizeMax());
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+
+
+        armoredDecorator.receiveAttack(5);
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+
+
+        attaquant.attack(armoredDecorator);
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+
+
+        attaquant.attack(armoredDecorator);
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+
+        armoredDecorator = Decorator.unwrapSpecificDecorator(armoredDecorator, ArmoredDecorator.class);
+
+
+        attaquant.attack(armoredDecorator);
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+        System.out.println(armoredDecorator instanceof GameCharacter);
+        System.out.println(armoredDecorator instanceof Decorator);
+        System.out.println(armoredDecorator instanceof Healer);
+
+        System.out.println("niveau : " + armoredDecorator.getLevel());
+
+
+        armoredDecorator = Decorator.unwrapSpecificDecorator(armoredDecorator, InvicibleDecorator.class);
+        attaquant.attack(armoredDecorator);
+        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
+        System.out.println("santé healer 2 : " + healer2.getHealth());
+        System.out.println(armoredDecorator instanceof GameCharacter);
+        System.out.println(armoredDecorator instanceof Decorator);
+        System.out.println(armoredDecorator instanceof Healer);
+
+        System.out.println("niveau : " + armoredDecorator.getLevel());
     }
 }

@@ -2,7 +2,7 @@ package eu.telecomnancy.rpg;
 
 public class ArmoredDecorator extends Decorator{
 
-    private double facteurReductionDegats;
+    private double facteurReductionDegats;    
 
     public ArmoredDecorator(GameCharacter decoratedCharacter, double facteurReductionDegats) {
         super(decoratedCharacter);
@@ -11,9 +11,17 @@ public class ArmoredDecorator extends Decorator{
 
 
     @Override
-    public void receiveAttack(int damage){
-        int reducedDamage = (int) (damage * facteurReductionDegats); //on réduit les dégâts subis
-        super.receiveAttack(reducedDamage); // on applique la méthode receiveAttack de la classe mère mais en donnant les dégats réduits en paramètre
+    public void receiveAttack(int damage) {
+        // Réduction des dégâts reçus
+        int reducedDamage = (int) (damage * facteurReductionDegats);
+        super.receiveAttack(reducedDamage);
     }
+
+    //Pour le clonage :
+    @Override
+    public ArmoredDecorator clone() {
+        return (ArmoredDecorator) super.clone();
+    }
+
 
 }

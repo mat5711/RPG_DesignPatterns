@@ -29,6 +29,8 @@ public abstract class GameCharacter implements Cloneable{
 
 
     //Pour le visitor
+    // On passe par cette méthode pour accepter un visiteur, comme ça pour les Teams, on parcourt la liste et on appelle cette méthode pour chaque personnage
+    // On est obligé de mettre cette méthode en abstract, car on a besoin de savoir si le personnage est un Healer, un Warrior ou un Wizard, donc on doit appeler cette méthode directement dans les classes filles
     public abstract void accept(CharacterVisitor visitor);
 
     //pour le clonage
@@ -72,7 +74,6 @@ public abstract class GameCharacter implements Cloneable{
 
     public void setLevel(int level) {
         this.level = level;
-
         // On met à jour l'attribut principal (wisdom, intelligence, strength) qui dépend du level du personnage
         this.attributUpdate(level);
     }
@@ -153,8 +154,6 @@ public abstract class GameCharacter implements Cloneable{
 
 
 
-
-
     // State
     public State getState(){
         //On appelle d'abord update pour avoir le véritable état du personnage
@@ -177,7 +176,7 @@ public abstract class GameCharacter implements Cloneable{
         this.state.onTryToMove(this);
     }
 
-    // Les combats sont gérés par la stratégie de combat du personnage ainsi que son State
+    // Les combats sont gérés par la stratégie de combat du personnage AINSI QUE son State
 
     //attaquer un autre personnage
     public void attack(GameCharacter ennemyCharacter) {

@@ -68,6 +68,12 @@ public class Team implements Cloneable{
         return players.size();
     }
 
+    //On accepte le visiteur pour chaque personnage de l'équipe
+    public void accept(CharacterVisitor visitor) {
+        for (GameCharacter player : players) {
+            player.accept(visitor);
+        }
+    }
 
     //Le clonage en question
     @Override

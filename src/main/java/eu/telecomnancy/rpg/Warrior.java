@@ -34,7 +34,7 @@ public class Warrior extends GameCharacter {
     }
     
 
-    //Pour le visitor
+    //Pour le visitor 
     @Override
     public void accept(CharacterVisitor visitor) {
         visitor.visit(this);

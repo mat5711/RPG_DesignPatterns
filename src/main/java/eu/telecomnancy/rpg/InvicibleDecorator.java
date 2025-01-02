@@ -9,8 +9,8 @@ public class InvicibleDecorator extends Decorator{
 
     @Override
     public void receiveAttack(int damage){
-        this.setHealth(this.getHealth() - this.combatStrategy.degatsEncaisses(damage));
-        if(this.getHealth() <= 0){
+        super.receiveAttack(damage);
+        if(this.getHealth() < 1){
             this.setHealth(1); //perso invincible
         }
     }
