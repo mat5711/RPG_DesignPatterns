@@ -1,9 +1,9 @@
 package eu.telecomnancy.rpg;
 
-public class InvicibleDecorator extends Decorator{
+public class InvincibleDecorator extends Decorator{
     
 
-    public InvicibleDecorator(GameCharacter decoratedCharacter){
+    public InvincibleDecorator(GameCharacter decoratedCharacter){
         super(decoratedCharacter);
     }
 

@@ -9,7 +9,7 @@ public class InvicibleDecoratorTest {
     void testReceiveAttack() {
         // Arrange
         GameCharacter character = new Healer("Hector");
-        InvicibleDecorator decorator = new InvicibleDecorator(character);
+        InvincibleDecorator decorator = new InvincibleDecorator(character);
         
         // Act
         decorator.receiveAttack(1000);

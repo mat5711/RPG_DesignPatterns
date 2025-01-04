@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: eu.telecomnancy.rpg.StateTest
+Test set: eu.telecomnancy.rpg.DecoratorTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in eu.telecomnancy.rpg.StateTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in eu.telecomnancy.rpg.DecoratorTest

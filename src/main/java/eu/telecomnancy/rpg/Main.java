@@ -2,62 +2,52 @@ package eu.telecomnancy.rpg;
 
 public class Main {
     public static void main(String[] args) {
+        // Façade du jeu
+        Facade facade = new Facade();
 
-        GameCharacter healer = new Healer("John");
-        GameCharacter healer2 = healer.clone();
-        System.out.println(healer2.getName());
+        // Invoker
+        GameInvoker invoker = new GameInvoker();
 
-        healer2.setHealth(5);
-        healer2.addExperiencePoints(1000);
+        // Créons des équipes
+        Team teamA = new Team("TeamA");
+        Team teamB = new Team("TeamB");
 
+        // Commandes concrètes (voir l'exemple précédent)
+        Command addTeamA = new AddTeamCommand(facade, teamA);
+        Command addTeamB = new AddTeamCommand(facade, teamB);
 
-        Warrior attaquant = new Warrior("méchant");
+        // On enfile les commandes
+        invoker.addCommand(addTeamA);
+        invoker.addCommand(addTeamB);
 
-        GameCharacter armoredDecorator = new ArmoredDecorator(healer2, 0.4);
-        armoredDecorator = new InvicibleDecorator(armoredDecorator);
+        // Process exécute toutes les commandes en attente
+        invoker.processCommands();
 
-        healer2.addExperiencePoints(1000);
+        // Ajout de personnages dans les équipes
+        CharacterCreator warriorCreator = new WarriorCreator();
+        CharacterCreator wizardCreator = new WizardCreator();
+        teamA.addPlayer(warriorCreator.createCharacter("Conan"));
+        teamB.addPlayer(wizardCreator.createCharacter("Merlin"));
 
+        // Commande d'attaque 1v1
+        Command attackCommand = new TeamAttackCommand(facade, "TeamA", "TeamB", 0, 0);
+        // On enfile l'attaque
+        invoker.addCommand(attackCommand);
 
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
+        // Exécution (enfilez, puis exécutez)
+        invoker.processCommands();
 
+        // Suppose qu'on veut annuler la dernière attaque
+        invoker.undoLastCommand();
 
-        armoredDecorator.receiveAttack(5);
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
+        // On peut faire la même chose pour un soin ou un buff
+        Command healTeamB = new HealTeamCommand(facade, "TeamB");
+        invoker.addCommand(healTeamB);
+        invoker.processCommands();
 
-
-        attaquant.attack(armoredDecorator);
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
-
-
-        attaquant.attack(armoredDecorator);
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
-
-        armoredDecorator = Decorator.unwrapSpecificDecorator(armoredDecorator, ArmoredDecorator.class);
-
-
-        attaquant.attack(armoredDecorator);
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
-        System.out.println(armoredDecorator instanceof GameCharacter);
-        System.out.println(armoredDecorator instanceof Decorator);
-        System.out.println(armoredDecorator instanceof Healer);
-
-        System.out.println("niveau : " + armoredDecorator.getLevel());
-
-
-        armoredDecorator = Decorator.unwrapSpecificDecorator(armoredDecorator, InvicibleDecorator.class);
-        attaquant.attack(armoredDecorator);
-        System.out.println("santé armoredDecorator : " + armoredDecorator.getHealth());
-        System.out.println("santé healer 2 : " + healer2.getHealth());
-        System.out.println(armoredDecorator instanceof GameCharacter);
-        System.out.println(armoredDecorator instanceof Decorator);
-        System.out.println(armoredDecorator instanceof Healer);
-
-        System.out.println("niveau : " + armoredDecorator.getLevel());
+        // Et annuler ce soin
+        invoker.undoLastCommand();
     }
+
+    
 }
