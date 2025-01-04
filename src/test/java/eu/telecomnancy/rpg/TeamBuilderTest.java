@@ -1,95 +1,299 @@
 package eu.telecomnancy.rpg;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 public class TeamBuilderTest {
 
-    @Test
-    public void testTeamBuilderCreation() {
-        CharacterCreator warriorCreator = new WarriorCreator();
-        CharacterCreator wizardCreator = new WizardCreator();
+    // ==============================================================================
+    // 1) TEAM BUILDER CREATION (testTeamBuilderCreation)
+    // ==============================================================================
+    @Nested
+    class SimpleTeamBuilderCreationTests {
+        private Builder builder;
+        private Team team;
 
-        GameCharacter warrior = warriorCreator.createCharacter("Arthas");
-        GameCharacter wizard = wizardCreator.createCharacter("Dumbledore");
+        @BeforeEach
+        void setup() {
+            CharacterCreator warriorCreator = new WarriorCreator();
+            CharacterCreator wizardCreator = new WizardCreator();
 
-        Builder builder = new TeamBuilder();
-        builder.setName("Magic Warriors");
-        builder.setCharacter(warrior);
-        builder.setCharacter(wizard);
-        
-        // Création de l'équipe
-        Team team = ((TeamBuilder) builder).getResult();
+            GameCharacter warrior = warriorCreator.createCharacter("Arthas");
+            GameCharacter wizard = wizardCreator.createCharacter("Dumbledore");
 
+            // Construction via TeamBuilder
+            builder = new TeamBuilder();
+            builder.setName("Magic Warriors");
+            builder.setCharacter(warrior);
+            builder.setCharacter(wizard);
 
-        assertNotNull(team, "L'équipe ne doit pas être nulle");
-        assertEquals("Magic Warriors", team.getName(), "Le nom de l'équipe doit être 'Magic Warriors'");
-        assertEquals(2, team.getPlayers().size(), "L'équipe doit avoir 2 membres");
-        assertEquals("Arthas", team.getPlayers().get(0).getName(), "Le premier membre doit être 'Arthas'");
-        assertEquals("Dumbledore", team.getPlayers().get(1).getName(), "Le second membre doit être 'Dumbledore'");
+            team = ((TeamBuilder) builder).getResult();
+        }
+
+        @Test
+        void testTeamNotNull() {
+            assertNotNull(team, "L'équipe ne doit pas être nulle");
+        }
+
+        @Test
+        void testTeamName() {
+            assertEquals("Magic Warriors", team.getName(), 
+                "Le nom de l'équipe doit être 'Magic Warriors'");
+        }
+
+        @Test
+        void testTeamSize() {
+            assertEquals(2, team.getPlayers().size(), 
+                "L'équipe doit avoir 2 membres");
+        }
+
+        @Test
+        void testFirstMemberName() {
+            assertEquals("Arthas", team.getPlayers().get(0).getName(), 
+                "Le premier membre doit être 'Arthas'");
+        }
+
+        @Test
+        void testSecondMemberName() {
+            assertEquals("Dumbledore", team.getPlayers().get(1).getName(), 
+                "Le second membre doit être 'Dumbledore'");
+        }
     }
 
-    @Test
-    public void testDirectorBuilderCreation() {
-        CharacterCreator wizardCreator = new WizardCreator();
-        CharacterCreator healerCreator = new HealerCreator();
-        CharacterCreator warriorCreator = new WarriorCreator();
+    // ==============================================================================
+    // 2) DIRECTOR BUILDER CREATION (testDirectorBuilderCreation)
+    // ==============================================================================
+    @Nested
+    class DirectorBuilderCreationTests {
 
-        GameCharacter wizard1 = wizardCreator.createCharacter("Albert");
-        GameCharacter wizard2 = wizardCreator.createCharacter("Hector");
-        GameCharacter wizard3 = wizardCreator.createCharacter("Tom");
+        private GameCharacter wizard1, wizard2, wizard3;
+        private GameCharacter healer1, healer2, healer3;
+        private GameCharacter warrior1, warrior2, warrior3;
+        private DirectorBuilder director;
 
-        GameCharacter healer1 = healerCreator.createCharacter("Alice");
-        GameCharacter healer2 = healerCreator.createCharacter("Bob");
-        GameCharacter healer3 = healerCreator.createCharacter("Charlie");
+        @BeforeEach
+        void setup() {
+            CharacterCreator wizardCreator = new WizardCreator();
+            CharacterCreator healerCreator = new HealerCreator();
+            CharacterCreator warriorCreator = new WarriorCreator();
 
-        GameCharacter warrior1 = warriorCreator.createCharacter("David");
-        GameCharacter warrior2 = warriorCreator.createCharacter("Eve");
-        GameCharacter warrior3 = warriorCreator.createCharacter("Frank");
+            // Wizards
+            wizard1 = wizardCreator.createCharacter("Albert");
+            wizard2 = wizardCreator.createCharacter("Hector");
+            wizard3 = wizardCreator.createCharacter("Tom");
+            // Healers
+            healer1 = healerCreator.createCharacter("Alice");
+            healer2 = healerCreator.createCharacter("Bob");
+            healer3 = healerCreator.createCharacter("Charlie");
+            // Warriors
+            warrior1 = warriorCreator.createCharacter("David");
+            warrior2 = warriorCreator.createCharacter("Eve");
+            warrior3 = warriorCreator.createCharacter("Frank");
 
-        DirectorBuilder director = new DirectorBuilder();
+            // Director
+            director = new DirectorBuilder();
+        }
 
-        Builder builder1 = director.constructWizardTeam((Wizard) wizard1, (Wizard) wizard2, (Wizard) wizard3);
-        Team teamWizard = ((TeamBuilder) builder1).getResult();
+        // --------------------------------------------------------------------------
+        // 2.1 WizardTeam
+        // --------------------------------------------------------------------------
+        @Nested
+        class WizardTeam {
+            private Team teamWizard;
 
+            @BeforeEach
+            void setupWizardTeam() {
+                Builder builderWizard = director.constructWizardTeam(
+                        (Wizard) wizard1, (Wizard) wizard2, (Wizard) wizard3);
+                teamWizard = ((TeamBuilder) builderWizard).getResult();
+            }
 
-        assertNotNull(teamWizard, "L'équipe ne doit pas être nulle");
-        assertEquals("team wizard", teamWizard.getName(), "Le nom de l'équipe doit être 'team wizard'");
-        assertEquals(3, teamWizard.getPlayers().size(), "L'équipe doit avoir 3 membres");
-        assertEquals("Albert", teamWizard.getPlayers().get(0).getName(), "Le premier membre doit être 'Albert'");
-        assertEquals("Hector", teamWizard.getPlayers().get(1).getName(), "Le second membre doit être 'Hector'");
-        assertEquals("Tom", teamWizard.getPlayers().get(2).getName(), "Le second membre doit être 'Tom'");
+            @Test
+            void testTeamWizardNotNull() {
+                assertNotNull(teamWizard, "L'équipe ne doit pas être nulle");
+            }
 
+            @Test
+            void testTeamWizardName() {
+                assertEquals("team wizard", teamWizard.getName(), 
+                    "Le nom de l'équipe doit être 'team wizard'");
+            }
 
-        Builder builder2 = director.constructHealerTeam((Healer) healer1, (Healer) healer2, (Healer) healer3);
-        Team teamHealer = ((TeamBuilder) builder2).getResult();
+            @Test
+            void testTeamWizardSize() {
+                assertEquals(3, teamWizard.getPlayers().size(), 
+                    "L'équipe doit avoir 3 membres");
+            }
 
-        assertNotNull(teamHealer, "L'équipe ne doit pas être nulle");
-        assertEquals("team healer", teamHealer.getName(), "Le nom de l'équipe doit être 'team healer'");
-        assertEquals(3, teamHealer.getPlayers().size(), "L'équipe doit avoir 3 membres");
-        assertEquals("Alice", teamHealer.getPlayers().get(0).getName(), "Le premier membre doit être 'Alice'");
-        assertEquals("Bob", teamHealer.getPlayers().get(1).getName(), "Le second membre doit être 'Bob'");
-        assertEquals("Charlie", teamHealer.getPlayers().get(2).getName(), "Le second membre doit être 'Charlie'");
+            @Test
+            void testTeamWizardMembers1() {
+                assertEquals("Albert", teamWizard.getPlayers().get(0).getName(), 
+                    "Le premier membre doit être 'Albert'");
+            }
 
-        Builder builder3 = director.constructWarriorTeam((Warrior) warrior1, (Warrior) warrior2, (Warrior) warrior3);
-        Team teamWarrior = ((TeamBuilder) builder3).getResult();
-        
-        assertNotNull(teamWarrior, "L'équipe ne doit pas être nulle");
-        assertEquals("team warrior", teamWarrior.getName(), "Le nom de l'équipe doit être 'team warrior'");
-        assertEquals(3, teamWarrior.getPlayers().size(), "L'équipe doit avoir 3 membres");
-        assertEquals("David", teamWarrior.getPlayers().get(0).getName(), "Le premier membre doit être 'David'");
-        assertEquals("Eve", teamWarrior.getPlayers().get(1).getName(), "Le second membre doit être 'Eve'");
-        assertEquals("Frank", teamWarrior.getPlayers().get(2).getName(), "Le second membre doit être 'Frank'");
+            @Test
+            void testTeamWizardMembers2() {
+                assertEquals("Hector", teamWizard.getPlayers().get(1).getName(), 
+                    "Le second membre doit être 'Hector'");
+            }
 
-        Builder builder4 = director.constructMixedTeam((Wizard) wizard1, (Healer) healer1, (Warrior) warrior1);
-        Team teamMixed = ((TeamBuilder) builder4).getResult();
+            @Test
+            void testTeamWizardMembers3() {
+                assertEquals("Tom", teamWizard.getPlayers().get(2).getName(), 
+                    "Le troisième membre doit être 'Tom'");
+            }
+        }
 
-        assertNotNull(teamMixed, "L'équipe ne doit pas être nulle");
-        assertEquals("mixed team", teamMixed.getName(), "Le nom de l'équipe doit être 'mixed team'");
-        assertEquals(3, teamMixed.getPlayers().size(), "L'équipe doit avoir 3 membres");
-        assertEquals("Albert", teamMixed.getPlayers().get(0).getName(), "Le premier membre doit être 'Albert'");
-        assertEquals("Alice", teamMixed.getPlayers().get(1).getName(), "Le second membre doit être 'Alice'");
-        assertEquals("David", teamMixed.getPlayers().get(2).getName(), "Le second membre doit être 'David'");
-        
+        // --------------------------------------------------------------------------
+        // 2.2 HealerTeam
+        // --------------------------------------------------------------------------
+        @Nested
+        class HealerTeam {
+            private Team teamHealer;
+
+            @BeforeEach
+            void setupHealerTeam() {
+                Builder builderHealer = director.constructHealerTeam(
+                        (Healer) healer1, (Healer) healer2, (Healer) healer3);
+                teamHealer = ((TeamBuilder) builderHealer).getResult();
+            }
+
+            @Test
+            void testTeamHealerNotNull() {
+                assertNotNull(teamHealer, "L'équipe ne doit pas être nulle");
+            }
+
+            @Test
+            void testTeamHealerName() {
+                assertEquals("team healer", teamHealer.getName(), 
+                    "Le nom de l'équipe doit être 'team healer'");
+            }
+
+            @Test
+            void testTeamHealerSize() {
+                assertEquals(3, teamHealer.getPlayers().size(), 
+                    "L'équipe doit avoir 3 membres");
+            }
+
+            @Test
+            void testTeamHealerMembers1() {
+                assertEquals("Alice", teamHealer.getPlayers().get(0).getName(), 
+                    "Le premier membre doit être 'Alice'");
+            }
+
+            @Test
+            void testTeamHealerMembers2() {
+                assertEquals("Bob", teamHealer.getPlayers().get(1).getName(), 
+                    "Le second membre doit être 'Bob'");
+            }
+
+            @Test
+            void testTeamHealerMembers3() {
+                assertEquals("Charlie", teamHealer.getPlayers().get(2).getName(), 
+                    "Le troisième membre doit être 'Charlie'");
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // 2.3 WarriorTeam
+        // --------------------------------------------------------------------------
+        @Nested
+        class WarriorTeam {
+            private Team teamWarrior;
+
+            @BeforeEach
+            void setupWarriorTeam() {
+                Builder builderWarrior = director.constructWarriorTeam(
+                        (Warrior) warrior1, (Warrior) warrior2, (Warrior) warrior3);
+                teamWarrior = ((TeamBuilder) builderWarrior).getResult();
+            }
+
+            @Test
+            void testTeamWarriorNotNull() {
+                assertNotNull(teamWarrior, "L'équipe ne doit pas être nulle");
+            }
+
+            @Test
+            void testTeamWarriorName() {
+                assertEquals("team warrior", teamWarrior.getName(), 
+                    "Le nom de l'équipe doit être 'team warrior'");
+            }
+
+            @Test
+            void testTeamWarriorSize() {
+                assertEquals(3, teamWarrior.getPlayers().size(), 
+                    "L'équipe doit avoir 3 membres");
+            }
+
+            @Test
+            void testTeamWarriorMembers1() {
+                assertEquals("David", teamWarrior.getPlayers().get(0).getName(),
+                    "Le premier membre doit être 'David'");
+            }
+
+            @Test
+            void testTeamWarriorMembers2() {
+                assertEquals("Eve", teamWarrior.getPlayers().get(1).getName(),
+                    "Le second membre doit être 'Eve'");
+            }
+
+            @Test
+            void testTeamWarriorMembers3() {
+                assertEquals("Frank", teamWarrior.getPlayers().get(2).getName(),
+                    "Le troisième membre doit être 'Frank'");
+            }
+        }
+
+        // --------------------------------------------------------------------------
+        // 2.4 MixedTeam
+        // --------------------------------------------------------------------------
+        @Nested
+        class MixedTeam {
+            private Team teamMixed;
+
+            @BeforeEach
+            void setupMixedTeam() {
+                Builder builderMixed = director.constructMixedTeam(
+                    (Wizard) wizard1, (Healer) healer1, (Warrior) warrior1);
+                teamMixed = ((TeamBuilder) builderMixed).getResult();
+            }
+
+            @Test
+            void testTeamMixedNotNull() {
+                assertNotNull(teamMixed, "L'équipe ne doit pas être nulle");
+            }
+
+            @Test
+            void testTeamMixedName() {
+                assertEquals("mixed team", teamMixed.getName(), 
+                    "Le nom de l'équipe doit être 'mixed team'");
+            }
+
+            @Test
+            void testTeamMixedSize() {
+                assertEquals(3, teamMixed.getPlayers().size(), 
+                    "L'équipe doit avoir 3 membres");
+            }
+
+            @Test
+            void testTeamMixedMembers1() {
+                assertEquals("Albert", teamMixed.getPlayers().get(0).getName(),
+                    "Le premier membre doit être 'Albert'");
+            }
+
+            @Test
+            void testTeamMixedMembers2() {
+                assertEquals("Alice", teamMixed.getPlayers().get(1).getName(),
+                    "Le second membre doit être 'Alice'");
+            }
+
+            @Test
+            void testTeamMixedMembers3() {
+                assertEquals("David", teamMixed.getPlayers().get(2).getName(),
+                    "Le troisième membre doit être 'David'");
+            }
+        }
     }
 }

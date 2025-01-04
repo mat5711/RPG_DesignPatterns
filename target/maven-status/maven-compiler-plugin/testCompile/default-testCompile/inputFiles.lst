@@ -1,12 +1,11 @@
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/PrototypeTeamTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/StateTest.java
+/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CommandTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/DecoratorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterStrategyTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/GameConfigurationTest.java
-/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/TeamTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterVisitorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/TeamBuilderTest.java
-/home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/InvicibleDecoratorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterObserverTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterCreatorTest.java
 /home/breit/Documents/telecom_2a/MOCI/rpg-breit12u/src/test/java/eu/telecomnancy/rpg/CharacterTest.java

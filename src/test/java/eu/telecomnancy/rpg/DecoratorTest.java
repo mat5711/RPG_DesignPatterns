@@ -11,8 +11,6 @@ public class DecoratorTest {
     private Warrior attaquant;   // Personnage qui attaque
 
     private GameCharacter decoratedHealer; // Healer décoré
-    // Note: j'ignore comment s'appelle votre classe "Decorator" de base
-    // J'appellerai "Decorator.unwrapSpecificDecorator" la méthode statique pour dé-coiffer.
 
     @BeforeEach
     public void setup() {
