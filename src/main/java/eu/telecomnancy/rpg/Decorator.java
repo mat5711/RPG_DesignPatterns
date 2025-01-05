@@ -4,7 +4,7 @@ public abstract class Decorator extends GameCharacter{
     
     //Le principe est de surcharger toutes les méthodes 
     //de GameCharacter ici pour les appliquer
-    //à decoratedCharacter, afin que lorsque notre
+    //à notre decoratedCharacter, afin que lorsque notre
     //personnage décoré reçoit un changement,
     //ce changement est changé sur notre personnage
     //de base. Donc en gros, pour que les deux 
