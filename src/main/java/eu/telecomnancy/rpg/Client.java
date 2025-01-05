@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
-        // On instancie la Façade
+
         Facade facade = new Facade();
-        // On instancie l'Invoker
         GameInvoker invoker = new GameInvoker();
 
         Scanner scanner = new Scanner(System.in);
