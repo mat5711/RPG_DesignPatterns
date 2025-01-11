@@ -1,6 +1,5 @@
 eu/telecomnancy/rpg/DefensiveStrategy.class
 eu/telecomnancy/rpg/CombatStrategy.class
-eu/telecomnancy/rpg/Main.class
 eu/telecomnancy/rpg/AggressiveStrategy.class
 eu/telecomnancy/rpg/Healer.class
 eu/telecomnancy/rpg/WarriorCreator.class
